@@ -11,7 +11,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.autograd as Variable
 
-from utils.util import *
+from util import *
 
 
 # Define the training function

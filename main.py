@@ -12,21 +12,16 @@ import torch.optim as optim
 import torch.autograd as Variable
 from tensorboardX import SummaryWriter
 
-from data.data import *
-from model.hierarchical import *
-# from model.cnn_lstm import
-from model.model import *
-from utils.util import *
-from train.train_han_multihop import *
-# from train.train import *
-# from data.data_basis import *
-# from train.train_han import *
+from data import *
+from model import *
+from util import *
+from train_han import *
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
 
 
 def build_model(args, embeddings=None):
-    mil = HANSelfAttention(args)
+    mil = HAN(args)
     if args.emb:
         mil.set_embedding(embeddings) #TODO:
     return mil

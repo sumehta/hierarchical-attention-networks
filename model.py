@@ -1,3 +1,10 @@
+import math
+import torch
+from torch import nn
+from torch.nn import init
+from torch.nn import functional as F
+
+
 class GRUEncoder(nn.Module):
     def __init__(self, emb_dim, hidden_dim, bidirectional=False, embedding=None):
         super(GRUEncoder, self).__init__()
@@ -38,7 +45,7 @@ class SentClassifier(nn.Module):
     def forward(self, inp): #inp = [bsz, sent_emb+doc_emb]
         hid = self.dropout(self.hidden(inp))
         return self.hidden2op(hid)
-            
+
 class IntraAttention(nn.Module):
     def __init__(self, hidden_dim, bidirectional=True):
         super(IntraAttention, self).__init__()

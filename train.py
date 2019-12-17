@@ -20,6 +20,7 @@ def train(model, criterion, tr_batcher, epoch, writer, logger, args ):
     total_loss = 0
     start_time = time.time()
     all_losses = []
+    model.train()
     params = list(model.parameters())
     optimizer = torch.optim.SGD( params, args.lr, momentum = args.momentum, weight_decay = args.weight_decay )
     for batch_idx, (data, targets, lens) in enumerate(tr_batcher.next()):
@@ -64,6 +65,7 @@ def evaluate( model, criterion, ev_batcher, epoch, writer, logger, args, mode='E
     epoch_f1 = []
     epoch_preds = []
     epoch_targets =  []
+    model.eval()
     m = Metrics(args.nclass, list(range(args.nclass)))
     total_loss = 0.0
     for batch_idx, (data, targets, lens) in enumerate(ev_batcher.next()):
